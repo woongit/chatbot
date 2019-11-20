@@ -1,6 +1,7 @@
+require('dotenv').config();
 const { RTMClient } = require('@slack/rtm-api');
 
-const token = 'xoxb-831052123879-829198541152-MuupFgqAbgZlvVyF70Bhzrun';
+const token = process.env.SLACK_TOKEN;
 
 const rtm = new RTMClient(token);
 rtm.start();
@@ -9,20 +10,20 @@ const food = require('./food');
 const movie = require('./movie');
 
 rtm.on('message', (message) => {
-    const { channel } = message;
-    const { text } = message;
-    console.log(`get message ${text}`);
-
-    switch (text) {
-    case '영화 ':
-        movie(rtm, channel);
-        break;
+  const { channel } = message;
+  const { text } = message;
+  console.log(`get message ${text}`);
+  console.log(channel);
+  switch (text) {
+    case '영화':
+      movie(rtm, channel);
+      break;
     case '밥':
-        food(rtm, channel);
-        break;
-    case '야,챗봇':
-        rtm.sendMessage('흑흑', channel);
-        break;
-    default: rtm.sendMessage('네 챗봇입니다', channel);
-    }
+      food(rtm, channel);
+      break;
+    case '놀이':
+      rtm.sendMessage('고만해.', channel);
+      break;
+    default: rtm.sendMessage('안녕하세요. 영화 , 밥, 놀이 중에 말씀해주세요.', channel);
+  }
 });
