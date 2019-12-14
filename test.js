@@ -39,7 +39,7 @@ rtm.on('message', function (message) {
 			case 2:
 				console.log("보낸 메시지: 영화");
 				if(text!="취향에 맞춘 영화를 추천해드릴게요.") {
-					console.log("테스트 실패: 영화");
+					console.log("테스트 실패: 영화!!");
 					process.exit(1);
 				}
 				console.log("message :", text);
