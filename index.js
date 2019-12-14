@@ -12,6 +12,7 @@ const movie = require('./movie');
 rtm.on('message', (message) => {
   const { channel } = message;
   const { text } = message;
+  console.log("--------");
   console.log(`get message ${text}`);
   console.log(channel);
   switch (text) {
